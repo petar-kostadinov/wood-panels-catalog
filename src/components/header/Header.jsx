@@ -1,20 +1,25 @@
-import { NavLink } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 
 function Header() {
+  const { pathname } = useLocation()
+  const onCatalog = pathname.startsWith('/catalog')
+
   return (
     <header className="site-header">
       <div className="header-inner">
-        <NavLink to="/" className="brand" end>
+        <Link to="/" className="brand">
           <span className="mark" aria-hidden="true" />
           Wood Panels
-        </NavLink>
+        </Link>
         <nav className="nav" aria-label="Main">
-          <NavLink to="/catalog">Catalog</NavLink>
+          <Link to="/catalog" className={onCatalog ? 'active' : undefined} aria-current={onCatalog ? 'page' : undefined}>
+            Catalog
+          </Link>
         </nav>
         <div className="session">
-          <NavLink to="/login" className="quiet-btn">Sign in</NavLink>
-          <NavLink to="/register" className="solid-btn">Register</NavLink>
+          <Link to="/login" className="quiet-btn">Sign in</Link>
+          <Link to="/register" className="solid-btn">Register</Link>
         </div>
       </div>
     </header>
