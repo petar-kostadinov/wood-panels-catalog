@@ -1,0 +1,21 @@
+:root {
+  --ink: #292929;
+  --line: #e6e6e6;
+  --stain: #283583;
+  --page: #f3f4f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: Manrope, "Segoe UI", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
