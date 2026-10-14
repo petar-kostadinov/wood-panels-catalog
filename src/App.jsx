@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
-import Header from './components/Header.jsx'
-import RouteBanner from './components/RouteBanner.jsx'
-import Footer from './components/Footer.jsx'
+import Header from './components/header/Header.jsx'
+import RouteBanner from './components/routeBanner/RouteBanner.jsx'
+import Footer from './components/footer/Footer.jsx'
 import './App.css'
 
 function App() {
