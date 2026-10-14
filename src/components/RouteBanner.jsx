@@ -1,37 +1,35 @@
 import { useLocation } from 'react-router-dom'
 import './RouteBanner.css'
 
-const banners = [
-  {
-    match: (path) => path === '/',
+const banners = {
+  '/': {
     src: '/images/banner-home.jpg',
     alt: 'Living room with wood wall panels',
   },
-  {
-    match: (path) => path.startsWith('/catalog/'),
-    src: '/images/banner-details.jpg',
-    alt: 'Kitchen cabinets made from wood panels',
-  },
-  {
-    match: (path) => path === '/catalog',
+  '/catalog': {
     src: '/images/banner-catalog.jpg',
     alt: 'Showroom of wood cabinets',
   },
-  {
-    match: (path) => path === '/wishlist',
+  '/wishlist': {
     src: '/images/banner-wishlist.jpg',
     alt: 'Bedroom with an oak wardrobe',
   },
-  {
-    match: (path) => path === '/panels/new',
+  '/panels/new': {
     src: '/images/banner-create.jpg',
     alt: 'Studio table with wood panel samples',
   },
-]
+}
+
+const detailsBanner = {
+  src: '/images/banner-details.jpg',
+  alt: 'Kitchen cabinets made from wood panels',
+}
 
 function RouteBanner() {
   const { pathname } = useLocation()
-  const banner = banners.find((item) => item.match(pathname)) ?? banners[0]
+  const banner = pathname.startsWith('/catalog/')
+    ? detailsBanner
+    : banners[pathname] || banners['/']
 
   return (
     <div className="route-banner">
