@@ -1,0 +1,66 @@
+.back {
+  color: #6d6d6d;
+}
+
+.detail-swatch {
+  height: 220px;
+  margin: 16px 0;
+}
+
+.detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.detail-head h2 {
+  margin-top: 8px;
+}
+
+.detail-head .by {
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+.price-lg {
+  margin-left: auto;
+  font-size: 28px;
+  color: var(--stain);
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.specs div {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+dt {
+  color: #6d6d6d;
+  font-size: 13px;
+}
+
+dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+}
+
+.copy {
+  margin: 0;
+  max-width: 62ch;
+}
+
+@media (max-width: 640px) {
+  .specs {
+    grid-template-columns: 1fr;
+  }
+}

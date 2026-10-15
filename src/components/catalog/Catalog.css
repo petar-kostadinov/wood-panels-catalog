@@ -1,0 +1,16 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filters .chip {
+  cursor: pointer;
+}
+
+.chip-on {
+  background: var(--stain);
+  color: #ffffff;
+}
