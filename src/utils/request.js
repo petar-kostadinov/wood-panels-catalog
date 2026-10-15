@@ -1,4 +1,4 @@
-const projectUrl = (import.meta.env.VITE_SUPABASE_URL || '').replace(/\/$/, '').replace(/\/rest\/v1$/, '')
+const projectUrl = import.meta.env.VITE_SUPABASE_URL
 const apiKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 export default async function request(path = '/', method = 'GET', data = null, opts = {}) {
@@ -24,7 +24,7 @@ export default async function request(path = '/', method = 'GET', data = null, o
     options.body = JSON.stringify(data)
   }
 
-  const response = await fetch(`${projectUrl}/rest/v1${path}`, options)
+  const response = await fetch(`${projectUrl}${path}`, options)
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)
@@ -35,4 +35,24 @@ export default async function request(path = '/', method = 'GET', data = null, o
   }
 
   return response.json()
+}
+
+export function registerAccount(email, password) {
+  return fetch(projectUrl.replace('/rest/v1', '/auth/v1/signup'), {
+    method: 'POST',
+    headers: {
+      apikey: apiKey,
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  }).then(async (response) => {
+    const result = await response.json()
+
+    if (!response.ok) {
+      throw new Error(result.msg || result.message || 'Registration failed.')
+    }
+
+    return result
+  })
 }

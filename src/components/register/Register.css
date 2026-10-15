@@ -1,0 +1,80 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 420px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.register-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.register-form input {
+  min-height: 42px;
+  border: 1px solid #8d8d8d;
+  border-radius: 8px;
+  background: #f7f8fa;
+  padding: 10px 12px;
+  font: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.register-form input:focus {
+  outline: 2px solid var(--stain);
+  border-color: var(--stain);
+  background: #ffffff;
+}
+
+.submit-btn {
+  min-height: 40px;
+  border: 1px solid var(--stain);
+  border-radius: 999px;
+  background: var(--stain);
+  color: #ffffff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.submit-btn:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.field-error {
+  color: #9b2c2c;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.form-message {
+  margin: 0;
+}
+
+.form-error {
+  color: #9b2c2c;
+}
+
+.form-message {
+  color: var(--stain);
+}
+
+.register-form a {
+  color: var(--stain);
+  font-weight: 700;
+}
