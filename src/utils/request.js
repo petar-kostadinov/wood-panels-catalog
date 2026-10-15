@@ -1,8 +1,8 @@
-const baseUrl = import.meta.env.VITE_SUPABASE_URL
+const projectUrl = (import.meta.env.VITE_SUPABASE_URL || '').replace(/\/$/, '').replace(/\/rest\/v1$/, '')
 const apiKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 export default async function request(path = '/', method = 'GET', data = null, opts = {}) {
-  if (!baseUrl || !apiKey) {
+  if (!projectUrl || !apiKey) {
     throw new Error('Add the Supabase URL and anon key in .env.local.')
   }
 
@@ -24,7 +24,7 @@ export default async function request(path = '/', method = 'GET', data = null, o
     options.body = JSON.stringify(data)
   }
 
-  const response = await fetch(`${baseUrl}/rest/v1${path}`, options)
+  const response = await fetch(`${projectUrl}/rest/v1${path}`, options)
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)

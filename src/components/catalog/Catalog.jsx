@@ -1,14 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import request from '../../utils/request.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
-import { panels } from '../../data/panels.js'
 import '../home/Home.css'
 import './Catalog.css'
 
 const materials = ['All', 'MDF', 'Plywood', 'Chipboard', 'Solid wood']
 
 function Catalog() {
+  const [panels, setPanels] = useState([])
   const [material, setMaterial] = useState('All')
-  const visible = material === 'All' ? panels : panels.filter((panel) => panel.material === material)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  const visible = material === 'All'
+    ? panels
+    : panels.filter((panel) => panel.material === material)
+
+  useEffect(() => {
+    request('/panels?order=created_at.desc')
+      .then(setPanels)
+      .catch((err) => setError(err.message))
+      .finally(() => setIsLoading(false))
+  }, [])
 
   return (
     <section aria-label="Catalog">
@@ -28,12 +41,21 @@ function Catalog() {
           </button>
         ))}
       </div>
-      <div className="cards">
-        {visible.map((panel) => (
-          <PanelCard key={panel.id} panel={panel} />
-        ))}
-      </div>
-      {visible.length === 0 && <p className="lede">No sheets of this material yet.</p>}
+      {isLoading && <p className="lede">Loading sheets...</p>}
+      {error && <p className="lede">{error}</p>}
+      {!isLoading && !error && panels.length === 0 && (
+        <p className="lede">No sheets yet.</p>
+      )}
+      {!isLoading && !error && panels.length > 0 && visible.length === 0 && (
+        <p className="lede">No sheets of this material yet.</p>
+      )}
+      {!isLoading && !error && visible.length > 0 && (
+        <div className="cards">
+          {visible.map((panel) => (
+            <PanelCard key={panel.id} panel={panel} />
+          ))}
+        </div>
+      )}
     </section>
   )
 }
