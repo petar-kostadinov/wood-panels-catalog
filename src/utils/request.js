@@ -6,13 +6,15 @@ export default async function request(path = '/', method = 'GET', data = null, o
     throw new Error('Add the Supabase URL and anon key in .env.local.')
   }
 
+  const { token, ...rest } = opts
+
   const options = {
     headers: {
       apikey: apiKey,
-      Authorization: `Bearer ${apiKey}`,
+      Authorization: `Bearer ${token || apiKey}`,
       Prefer: 'return=representation',
     },
-    ...opts,
+    ...rest,
   }
 
   if (method !== 'GET') {
