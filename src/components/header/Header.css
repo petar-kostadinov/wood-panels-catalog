@@ -80,6 +80,17 @@
   color: #ffffff;
 }
 
+button.quiet-btn {
+  font: inherit;
+  cursor: pointer;
+}
+
+.who {
+  color: #6d6d6d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 @media (max-width: 640px) {
   .session {
     margin-left: 0;

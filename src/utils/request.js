@@ -56,3 +56,23 @@ export function registerAccount(email, password) {
     return result
   })
 }
+
+export function loginAccount(email, password) {
+  return fetch(projectUrl.replace('/rest/v1', '/auth/v1/token?grant_type=password'), {
+    method: 'POST',
+    headers: {
+      apikey: apiKey,
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  }).then(async (response) => {
+    const result = await response.json()
+
+    if (!response.ok) {
+      throw new Error(result.msg || result.error_description || result.message || 'Sign in failed.')
+    }
+
+    return result
+  })
+}

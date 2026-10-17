@@ -1,9 +1,17 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/useAuth.js'
 import './Header.css'
 
 function Header() {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const { user, clearUser } = useAuth()
   const onCatalog = pathname.startsWith('/catalog')
+
+  function onSignOut() {
+    clearUser()
+    navigate('/')
+  }
 
   return (
     <header className="site-header">
@@ -16,11 +24,20 @@ function Header() {
           <Link to="/catalog" className={onCatalog ? 'active' : undefined} aria-current={onCatalog ? 'page' : undefined}>
             Catalog
           </Link>
+          {user && <Link to="/wishlist">Wishlist</Link>}
+          {user && <Link to="/panels/new">New listing</Link>}
         </nav>
-        <div className="session">
-          <Link to="/login" className="quiet-btn">Sign in</Link>
-          <Link to="/register" className="solid-btn">Register</Link>
-        </div>
+        {user ? (
+          <div className="session">
+            <span className="who">{user.email}</span>
+            <button type="button" className="quiet-btn" onClick={onSignOut}>Sign out</button>
+          </div>
+        ) : (
+          <div className="session">
+            <Link to="/login" className="quiet-btn">Sign in</Link>
+            <Link to="/register" className="solid-btn">Register</Link>
+          </div>
+        )}
       </div>
     </header>
   )

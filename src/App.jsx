@@ -6,6 +6,7 @@ import Home from './components/home/Home.jsx'
 import Catalog from './components/catalog/Catalog.jsx'
 import Details from './components/details/Details.jsx'
 import Register from './components/register/Register.jsx'
+import Login from './components/login/Login.jsx'
 import './App.css'
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/catalog/:id" element={<Details />} />
-          <Route path="/login" element={null} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </main>

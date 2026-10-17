@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/useAuth.js'
 import { registerAccount } from '../../utils/request.js'
 import '../home/Home.css'
 import './Register.css'
@@ -18,6 +19,11 @@ function Register() {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { user, saveUser } = useAuth()
+
+  if (user) {
+    return <Navigate to="/" />
+  }
 
   const markRequired = (field, value) => {
     setFieldErrors((current) => ({
@@ -63,7 +69,15 @@ function Register() {
     setIsLoading(true)
 
     registerAccount(email, password)
-      .then(() => navigate('/'))
+      .then((result) => {
+        if (result.session) {
+          saveUser({
+            email: result.user.email,
+            accessToken: result.session.access_token,
+          })
+        }
+        navigate('/')
+      })
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false))
   }
