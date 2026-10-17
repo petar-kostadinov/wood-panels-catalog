@@ -69,12 +69,11 @@ export default function Details() {
   return (
     <section aria-label="Details">
       <Link to="/catalog" className="back">Catalog</Link>
-      <div className={`swatch detail-swatch swatch-${panel.material.toLowerCase().split(' ')[0]}`} />
+      <img className="sheet-photo detail-photo" src={panel.image} alt={panel.name} />
       <div className="detail-head">
         <div>
           <span className="chip">{panel.material}</span>
           <h2>{panel.name}</h2>
-          <p className="by">{panel.author}</p>
         </div>
         <p className="price price-lg">€{Number(panel.price).toFixed(2)}</p>
       </div>

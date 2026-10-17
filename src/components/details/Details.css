@@ -2,8 +2,8 @@
   color: #6d6d6d;
 }
 
-.detail-swatch {
-  height: 220px;
+.detail-photo {
+  height: 320px;
   margin: 16px 0;
 }
 
@@ -17,11 +17,6 @@
 
 .detail-head h2 {
   margin-top: 8px;
-}
-
-.detail-head .by {
-  margin: 4px 0 0;
-  padding: 0;
 }
 
 .price-lg {

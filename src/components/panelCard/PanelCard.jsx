@@ -10,7 +10,7 @@ export default function PanelCard({ panel }) {
 
   return (
     <Link to={`/catalog/${panel.id}`} className="card">
-      <span className={`swatch swatch-${panel.material.toLowerCase().split(' ')[0]}`} />
+      <img className="sheet-photo" src={panel.image} alt="" />
       <span className="card-top">
         <span className="chip">{panel.material}</span>
         <span className="price">€{Number(panel.price).toFixed(2)}</span>
@@ -19,9 +19,7 @@ export default function PanelCard({ panel }) {
       <span className="meta">
         {panel.width} × {panel.height} mm · {panel.thickness} mm
       </span>
-      <span className="by">
-        {panel.author} · Added {added}
-      </span>
+      <span className="by">Added {added}</span>
     </Link>
   )
 }
