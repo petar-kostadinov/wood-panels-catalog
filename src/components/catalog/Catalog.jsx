@@ -6,7 +6,7 @@ import './Catalog.css'
 
 const materials = ['All', 'MDF', 'Plywood', 'Chipboard', 'Solid wood']
 
-function Catalog() {
+export default function Catalog() {
   const [panels, setPanels] = useState([])
   const [material, setMaterial] = useState('All')
   const [isLoading, setIsLoading] = useState(true)
@@ -59,5 +59,3 @@ function Catalog() {
     </section>
   )
 }
-
-export default Catalog

@@ -3,7 +3,7 @@ import request from '../../utils/request.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
 import './Home.css'
 
-function Home() {
+export default function Home() {
   const [panels, setPanels] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
@@ -36,5 +36,3 @@ function Home() {
     </section>
   )
 }
-
-export default Home

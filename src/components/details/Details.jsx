@@ -5,7 +5,7 @@ import '../panelCard/PanelCard.css'
 import '../home/Home.css'
 import './Details.css'
 
-function Details() {
+export default function Details() {
   const { id } = useParams()
   const [panel, setPanel] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -74,5 +74,3 @@ function Details() {
     </section>
   )
 }
-
-export default Details

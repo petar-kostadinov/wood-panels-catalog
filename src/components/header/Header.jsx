@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/useAuth.js'
 import './Header.css'
 
-function Header() {
+export default function Header() {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const { user, clearUser } = useAuth()
@@ -24,8 +24,16 @@ function Header() {
           <Link to="/catalog" className={onCatalog ? 'active' : undefined} aria-current={onCatalog ? 'page' : undefined}>
             Catalog
           </Link>
-          {user && <Link to="/wishlist">Wishlist</Link>}
-          {user && <Link to="/panels/new">New listing</Link>}
+          {user && (
+            <Link to="/wishlist" className={pathname === '/wishlist' ? 'active' : undefined} aria-current={pathname === '/wishlist' ? 'page' : undefined}>
+              Wishlist
+            </Link>
+          )}
+          {user && (
+            <Link to="/panels/new" className={pathname === '/panels/new' ? 'active' : undefined} aria-current={pathname === '/panels/new' ? 'page' : undefined}>
+              New listing
+            </Link>
+          )}
         </nav>
         {user ? (
           <div className="session">
@@ -42,5 +50,3 @@ function Header() {
     </header>
   )
 }
-
-export default Header

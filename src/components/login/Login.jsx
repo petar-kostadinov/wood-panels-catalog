@@ -7,7 +7,7 @@ import '../register/Register.css'
 
 const requiredText = 'This field is required.'
 
-function Login() {
+export default function Login() {
   const { user, saveUser } = useAuth()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
@@ -109,5 +109,3 @@ function Login() {
     </section>
   )
 }
-
-export default Login

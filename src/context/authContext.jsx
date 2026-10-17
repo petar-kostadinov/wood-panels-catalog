@@ -6,7 +6,7 @@ function readUser() {
   return saved ? JSON.parse(saved) : null
 }
 
-export function AuthProvider({ children }) {
+export default function AuthProvider({ children }) {
   const [user, setUser] = useState(readUser)
 
   function saveUser(nextUser) {

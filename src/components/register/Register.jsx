@@ -7,7 +7,7 @@ import './Register.css'
 
 const requiredText = 'This field is required.'
 
-function Register() {
+export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -142,5 +142,3 @@ function Register() {
     </section>
   )
 }
-
-export default Register

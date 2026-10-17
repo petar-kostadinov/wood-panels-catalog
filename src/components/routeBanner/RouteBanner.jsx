@@ -25,7 +25,7 @@ const detailsBanner = {
   alt: 'Kitchen cabinets made from wood panels',
 }
 
-function RouteBanner() {
+export default function RouteBanner() {
   const { pathname } = useLocation()
   const banner = pathname.startsWith('/catalog/')
     ? detailsBanner
@@ -37,5 +37,3 @@ function RouteBanner() {
     </div>
   )
 }
-
-export default RouteBanner

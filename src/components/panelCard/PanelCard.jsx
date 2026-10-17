@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import './PanelCard.css'
 
-function PanelCard({ panel }) {
+export default function PanelCard({ panel }) {
   const added = new Date(panel.created_at).toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
@@ -25,5 +25,3 @@ function PanelCard({ panel }) {
     </Link>
   )
 }
-
-export default PanelCard
