@@ -1,0 +1,44 @@
+.not-found h2 {
+  animation: not-found-rise 0.5s ease both;
+}
+
+.not-found-bar {
+  display: block;
+  width: 88px;
+  height: 4px;
+  margin: 8px 0 4px;
+  border-radius: 999px;
+  background: var(--stain);
+  transform-origin: left center;
+  animation: not-found-bar 1.6s ease-in-out infinite;
+}
+
+@keyframes not-found-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes not-found-bar {
+  0%,
+  100% {
+    transform: scaleX(0.35);
+  }
+
+  50% {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found h2,
+  .not-found-bar {
+    animation: none;
+  }
+}

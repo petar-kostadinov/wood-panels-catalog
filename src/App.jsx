@@ -10,6 +10,7 @@ import Register from './components/register/Register.jsx'
 import Login from './components/login/Login.jsx'
 import Wishlist from './components/wishlist/Wishlist.jsx'
 import NewListing from './components/newListing/NewListing.jsx'
+import NotFound from './components/notFound/NotFound.jsx'
 import './App.css'
 
 function Private({ children }) {
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/wishlist" element={<Private><Wishlist /></Private>} />
           <Route path="/panels/new" element={<Private><NewListing /></Private>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
