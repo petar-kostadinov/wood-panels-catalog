@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import request from '../../utils/request.js'
+import { readWishlist, saveWishlist } from '../../utils/wishlist.js'
+import { useAuth } from '../../context/useAuth.js'
 import '../panelCard/PanelCard.css'
 import '../home/Home.css'
 import './Details.css'
 
 export default function Details() {
   const { id } = useParams()
+  const { user } = useAuth()
   const [panel, setPanel] = useState(null)
+  const [savedIds, setSavedIds] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -17,6 +21,24 @@ export default function Details() {
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false))
   }, [id])
+
+  useEffect(() => {
+    if (!user) {
+      return
+    }
+
+    setSavedIds(readWishlist(user.email))
+  }, [user])
+
+  function onWishlist() {
+    const saved = savedIds.includes(panel.id)
+    const next = saved
+      ? savedIds.filter((item) => item !== panel.id)
+      : [...savedIds, panel.id]
+
+    saveWishlist(user.email, next)
+    setSavedIds(next)
+  }
 
   if (isLoading) {
     return (
@@ -71,6 +93,11 @@ export default function Details() {
         </div>
       </dl>
       <p className="copy">{panel.description}</p>
+      {user && (
+        <button type="button" className="wish-btn" onClick={onWishlist}>
+          {savedIds.includes(panel.id) ? 'In wishlist' : 'Add to wishlist'}
+        </button>
+      )}
     </section>
   )
 }

@@ -59,6 +59,22 @@ dd {
   max-width: 62ch;
 }
 
+.wish-btn {
+  margin-top: 20px;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--stain);
+  background: var(--stain);
+  color: #ffffff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 @media (max-width: 640px) {
   .specs {
     grid-template-columns: 1fr;
