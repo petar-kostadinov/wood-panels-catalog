@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import request from '../../utils/request.js'
 import { readWishlist, saveWishlist } from '../../utils/wishlist.js'
 import { useAuth } from '../../context/useAuth.js'
@@ -9,11 +9,21 @@ import './Details.css'
 
 export default function Details() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const { user } = useAuth()
+  const email = user ? user.email : ''
   const [panel, setPanel] = useState(null)
-  const [savedIds, setSavedIds] = useState([])
+  const [savedFor, setSavedFor] = useState(email)
+  const [savedIds, setSavedIds] = useState(() => (email ? readWishlist(email) : []))
   const [isLoading, setIsLoading] = useState(true)
+  const [isDeleting, setIsDeleting] = useState(false)
   const [error, setError] = useState('')
+  const [actionError, setActionError] = useState('')
+
+  if (savedFor !== email) {
+    setSavedFor(email)
+    setSavedIds(email ? readWishlist(email) : [])
+  }
 
   useEffect(() => {
     request(`/panels?id=eq.${id}`)
@@ -21,14 +31,6 @@ export default function Details() {
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false))
   }, [id])
-
-  useEffect(() => {
-    if (!user) {
-      return
-    }
-
-    setSavedIds(readWishlist(user.email))
-  }, [user])
 
   function onWishlist() {
     const saved = savedIds.includes(panel.id)
@@ -38,6 +40,30 @@ export default function Details() {
 
     saveWishlist(user.email, next)
     setSavedIds(next)
+  }
+
+  function onDelete() {
+    const ok = window.confirm('Delete this sheet?')
+
+    if (!ok) {
+      return
+    }
+
+    setActionError('')
+    setIsDeleting(true)
+
+    request(`/panels?id=eq.${panel.id}`, 'DELETE', null, { token: user.accessToken })
+      .then((result) => {
+        if (Array.isArray(result) && result.length === 0) {
+          throw new Error('The sheet was not deleted.')
+        }
+
+        navigate('/catalog')
+      })
+      .catch((err) => {
+        setActionError(err.message)
+        setIsDeleting(false)
+      })
   }
 
   if (isLoading) {
@@ -92,6 +118,15 @@ export default function Details() {
         </div>
       </dl>
       <p className="copy">{panel.description}</p>
+      {user && user.email === panel.author && (
+        <div className="owner-actions">
+          <Link to={`/panels/${panel.id}/edit`} className="wish-btn">Edit</Link>
+          <button type="button" className="delete-btn" onClick={onDelete} disabled={isDeleting}>
+            {isDeleting ? 'Deleting...' : 'Delete'}
+          </button>
+        </div>
+      )}
+      {actionError && <p className="lede">{actionError}</p>}
       {user && (
         <button type="button" className="wish-btn" onClick={onWishlist}>
           {savedIds.includes(panel.id) ? 'In wishlist' : 'Add to wishlist'}

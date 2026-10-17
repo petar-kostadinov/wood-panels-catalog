@@ -10,6 +10,7 @@ import Register from './components/register/Register.jsx'
 import Login from './components/login/Login.jsx'
 import Wishlist from './components/wishlist/Wishlist.jsx'
 import NewListing from './components/newListing/NewListing.jsx'
+import EditListing from './components/editListing/EditListing.jsx'
 import NotFound from './components/notFound/NotFound.jsx'
 import './App.css'
 
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/wishlist" element={<Private><Wishlist /></Private>} />
           <Route path="/panels/new" element={<Private><NewListing /></Private>} />
+          <Route path="/panels/:id/edit" element={<Private><EditListing /></Private>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

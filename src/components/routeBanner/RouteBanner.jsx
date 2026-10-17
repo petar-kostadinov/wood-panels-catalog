@@ -29,7 +29,9 @@ export default function RouteBanner() {
   const { pathname } = useLocation()
   const banner = pathname.startsWith('/catalog/')
     ? detailsBanner
-    : banners[pathname] || banners['/']
+    : pathname.endsWith('/edit')
+      ? banners['/panels/new']
+      : banners[pathname] || banners['/']
 
   return (
     <div className="route-banner">
