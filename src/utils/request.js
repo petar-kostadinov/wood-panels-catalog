@@ -29,7 +29,9 @@ export default async function request(path = '/', method = 'GET', data = null, o
   const response = await fetch(`${projectUrl}${path}`, options)
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`)
+    const result = await response.json().catch(() => null)
+    const message = result && (result.message || result.msg || result.error_description)
+    throw new Error(message || `HTTP error! status: ${response.status}`)
   }
 
   if ([201, 204].includes(response.status)) {
