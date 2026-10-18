@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import request from '../../utils/request.js'
 import { readWishlist, saveWishlist } from '../../utils/wishlist.js'
 import { useAuth } from '../../context/useAuth.js'
+import Comments from '../comments/Comments.jsx'
 import '../panelCard/PanelCard.css'
 import '../home/Home.css'
 import './Details.css'
@@ -118,6 +119,7 @@ export default function Details() {
         </div>
       </dl>
       <p className="copy">{panel.description}</p>
+      <Comments panelId={panel.id} />
       {user && user.email === panel.author && (
         <div className="owner-actions">
           <Link to={`/panels/${panel.id}/edit`} className="wish-btn">Edit</Link>
