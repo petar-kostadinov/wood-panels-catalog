@@ -72,15 +72,12 @@
   text-transform: none;
 }
 .form-message {
-  margin: 0;
+  margin: 0 0 16px;
+  color: var(--stain);
 }
 
 .form-error {
   color: #9b2c2c;
-}
-
-.form-message {
-  color: var(--stain);
 }
 
 .register-form a {

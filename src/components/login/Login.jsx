@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/useAuth.js'
 import { loginAccount } from '../../utils/request.js'
 import '../home/Home.css'
@@ -10,6 +10,8 @@ const requiredText = 'This field is required.'
 export default function Login() {
   const { user, saveUser } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  const message = location.state && location.state.message
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fieldErrors, setFieldErrors] = useState({ email: '', password: '' })
@@ -69,6 +71,7 @@ export default function Login() {
         <h2>Sign in</h2>
         <p className="lede">Use the email and password from your account.</p>
       </div>
+      {message && <p className="form-message">{message}</p>}
       <form className="register-form" onSubmit={onSubmit} noValidate>
         <label>
           Email

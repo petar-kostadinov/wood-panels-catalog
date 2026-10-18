@@ -19,7 +19,7 @@ export default function Register() {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
-  const { user, saveUser } = useAuth()
+  const { user } = useAuth()
 
   if (user) {
     return <Navigate to="/" />
@@ -69,14 +69,10 @@ export default function Register() {
     setIsLoading(true)
 
     registerAccount(email, password)
-      .then((result) => {
-        if (result.session) {
-          saveUser({
-            email: result.user.email,
-            accessToken: result.session.access_token,
-          })
-        }
-        navigate('/')
+      .then(() => {
+        navigate('/login', {
+          state: { message: 'Account created. Sign in with your email and password.' },
+        })
       })
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false))
