@@ -4,6 +4,7 @@ import { useAuth } from '../../context/useAuth.js'
 import request from '../../utils/request.js'
 import '../home/Home.css'
 import '../register/Register.css'
+import Spinner from '../spinner/Spinner.jsx'
 
 const requiredText = 'This field is required.'
 const materials = ['MDF', 'Plywood', 'Chipboard', 'Solid wood']
@@ -144,7 +145,7 @@ export default function EditListing() {
   if (isLoading) {
     return (
       <section aria-label="Edit listing">
-        <p className="lede">Loading sheet...</p>
+        <Spinner />
       </section>
     )
   }

@@ -3,6 +3,7 @@ import request from '../../utils/request.js'
 import { readWishlist } from '../../utils/wishlist.js'
 import { useAuth } from '../../context/useAuth.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
+import Spinner from '../spinner/Spinner.jsx'
 import '../home/Home.css'
 
 export default function Wishlist() {
@@ -31,7 +32,7 @@ export default function Wishlist() {
         <h2>Wishlist</h2>
         <p className="lede">Add a sheet from its details page. It will be listed here.</p>
       </div>
-      {isLoading && <p className="lede">Loading sheets...</p>}
+      {isLoading && <Spinner />}
       {error && <p className="lede">{error}</p>}
       {!isLoading && !error && panels.length === 0 && (
         <p className="lede">No saved sheets yet.</p>

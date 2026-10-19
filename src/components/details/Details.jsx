@@ -4,6 +4,7 @@ import request from '../../utils/request.js'
 import { readWishlist, saveWishlist } from '../../utils/wishlist.js'
 import { useAuth } from '../../context/useAuth.js'
 import Comments from '../comments/Comments.jsx'
+import Spinner from '../spinner/Spinner.jsx'
 import '../panelCard/PanelCard.css'
 import '../home/Home.css'
 import './Details.css'
@@ -70,7 +71,7 @@ export default function Details() {
   if (isLoading) {
     return (
       <section aria-label="Details">
-        <p className="lede">Loading sheet...</p>
+        <Spinner />
       </section>
     )
   }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import request from '../../utils/request.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
+import Spinner from '../spinner/Spinner.jsx'
 import '../home/Home.css'
 import './Catalog.css'
 
@@ -41,7 +42,7 @@ export default function Catalog() {
           </button>
         ))}
       </div>
-      {isLoading && <p className="lede">Loading sheets...</p>}
+      {isLoading && <Spinner />}
       {error && <p className="lede">{error}</p>}
       {!isLoading && !error && panels.length === 0 && (
         <p className="lede">No sheets yet.</p>

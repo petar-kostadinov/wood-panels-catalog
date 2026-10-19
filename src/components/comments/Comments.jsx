@@ -5,6 +5,7 @@ import { useAuth } from '../../context/useAuth.js'
 import '../home/Home.css'
 import '../register/Register.css'
 import './Comments.css'
+import Spinner from '../spinner/Spinner.jsx'
 
 const requiredText = 'This field is required.'
 
@@ -77,7 +78,7 @@ export default function Comments({ panelId }) {
   return (
     <section className="comments" aria-label="Comments">
       <h3>Comments</h3>
-      {isLoading && <p className="lede">Loading comments...</p>}
+      {isLoading && <Spinner />}
       {error && <p className="lede">{error}</p>}
       {!isLoading && !error && comments.length === 0 && (
         <p className="lede">No comments yet.</p>

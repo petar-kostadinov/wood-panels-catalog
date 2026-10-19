@@ -1,0 +1,13 @@
+.spinner {
+  display: flex;
+  padding: 8px 0 16px;
+}
+
+.clip {
+  width: 36px !important;
+  height: 36px !important;
+  border-top-color: var(--stain) !important;
+  border-right-color: var(--stain) !important;
+  border-left-color: var(--stain) !important;
+  border-bottom-color: transparent !important;
+}

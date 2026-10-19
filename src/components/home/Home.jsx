@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import request from '../../utils/request.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
+import Spinner from '../spinner/Spinner.jsx'
 import './Home.css'
 
 export default function Home() {
@@ -21,7 +22,7 @@ export default function Home() {
         <h2>Latest listings</h2>
         <p className="lede">The sheets added most recently. Open a card to see the details.</p>
       </div>
-      {isLoading && <p className="lede">Loading sheets...</p>}
+      {isLoading && <Spinner />}
       {error && <p className="lede">{error}</p>}
       {!isLoading && !error && panels.length === 0 && (
         <p className="lede">No sheets yet.</p>
