@@ -163,7 +163,7 @@ A comment is created with `POST /comments` and deleted by its author with `DELET
 - New listing and Edit listing: name, material, width, height, thickness, price, image URL, description
 - Comment: message
 
-Inputs are controlled with `value` and `onChange`. An empty required field shows "This field is required." after the user leaves it (`onBlur`).
+Inputs are controlled with `value` and `onChange`. An empty required field shows "This field is required." after the user leaves it (`onBlur`). The comment field shows that message only when Add comment is pressed and the message is empty.
 
 **Validation rules**
 
@@ -200,6 +200,6 @@ Each screen has its own CSS file. The spinner color and size are in `Spinner.css
 
 Authentication errors from Supabase are shown on the form. The message is the one returned by the server, for example "Email not confirmed".
 
-Failed panel, comment, and account requests show that same server message on the page. Loading uses the spinner. Submit buttons show "Signing in...", "Publishing...", "Saving...", or "Sending..." and are disabled while the request runs.
+Failed panel, comment, and account requests show that same server message on the page. Loading uses the spinner. Submit buttons show "Signing in...", "Publishing...", "Saving...", or "Adding..." and are disabled while the request runs.
 
 An empty catalog or home page says "No sheets yet." A material filter with no matches says "No sheets of this material yet." A missing sheet says "Sheet not found." An unknown address shows "404 not found." A wishlist with nothing saved says "No saved sheets yet." A sheet with no comments says "No comments yet."

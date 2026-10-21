@@ -118,7 +118,6 @@ export default function Comments({ panelId }) {
             Comment
             <textarea
               value={message}
-              onBlur={() => setFieldError(message.trim() ? '' : requiredText)}
               onChange={(event) => {
                 const value = event.target.value
                 setMessage(value)
@@ -128,7 +127,7 @@ export default function Comments({ panelId }) {
             {fieldError && <span className="field-error">{fieldError}</span>}
           </label>
           <button className="submit-btn" type="submit" disabled={isSending}>
-            {isSending ? 'Sending...' : 'Send'}
+            {isSending ? 'Adding...' : 'Add comment'}
           </button>
         </form>
       ) : (
