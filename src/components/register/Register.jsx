@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/useAuth.js'
+import { useAuth } from '../../hooks/useAuth.js'
 import { registerAccount } from '../../utils/request.js'
 import '../home/Home.css'
 import './Register.css'

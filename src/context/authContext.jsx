@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AuthContext } from './useAuth.js'
+import { AuthContext } from '../hooks/useAuth.js'
 
 function readUser() {
   const saved = localStorage.getItem('user')

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useAuth } from '../../context/useAuth.js'
+import { useAuth } from '../../hooks/useAuth.js'
 import request from '../../utils/request.js'
 import '../home/Home.css'
 import '../register/Register.css'

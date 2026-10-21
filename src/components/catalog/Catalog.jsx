@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import request from '../../utils/request.js'
+import { useState } from 'react'
+import usePanels from '../../hooks/usePanels.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
 import Spinner from '../spinner/Spinner.jsx'
 import '../home/Home.css'
@@ -8,21 +8,11 @@ import './Catalog.css'
 const materials = ['All', 'MDF', 'Plywood', 'Chipboard', 'Solid wood']
 
 export default function Catalog() {
-  const [panels, setPanels] = useState([])
+  const { panels, isLoading, error } = usePanels('/panels?order=created_at.desc')
   const [material, setMaterial] = useState('All')
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState('')
-
   const visible = material === 'All'
     ? panels
     : panels.filter((panel) => panel.material === material)
-
-  useEffect(() => {
-    request('/panels?order=created_at.desc')
-      .then(setPanels)
-      .catch((err) => setError(err.message))
-      .finally(() => setIsLoading(false))
-  }, [])
 
   return (
     <section aria-label="Catalog">

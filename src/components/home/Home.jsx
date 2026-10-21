@@ -1,20 +1,10 @@
-import { useEffect, useState } from 'react'
-import request from '../../utils/request.js'
+import usePanels from '../../hooks/usePanels.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
 import Spinner from '../spinner/Spinner.jsx'
 import './Home.css'
 
 export default function Home() {
-  const [panels, setPanels] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    request('/panels?order=created_at.desc')
-      .then(setPanels)
-      .catch((err) => setError(err.message))
-      .finally(() => setIsLoading(false))
-  }, [])
+  const { panels, isLoading, error } = usePanels('/panels?order=created_at.desc')
 
   return (
     <section aria-label="Home">

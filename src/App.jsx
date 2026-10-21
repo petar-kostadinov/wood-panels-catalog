@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { useAuth } from './context/useAuth.js'
+import { useAuth } from './hooks/useAuth.js'
 import Header from './components/header/Header.jsx'
 import RouteBanner from './components/routeBanner/RouteBanner.jsx'
 import Footer from './components/footer/Footer.jsx'

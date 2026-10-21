@@ -35,6 +35,7 @@ npm run lint
 The app is a Vite + React single-page application. Routing is in `src/App.jsx` with React Router.
 
 - `src/components/` holds one folder per component. Styles are CSS files next to the component.
+- `src/hooks/` holds custom hooks. `useAuth` reads the signed-in user. `usePanels` loads a sheet list.
 - `src/context/` shares the signed-in user through the Context API.
 - `src/utils/request.js` sends REST requests to Supabase. The app does not use the Supabase JavaScript SDK.
 - The loading indicator uses the `react-spinners` package.
@@ -176,7 +177,7 @@ Width, height, and thickness must be whole numbers greater than 0. Price must be
 
 **Hooks and component lifecycle**
 
-`useState` holds form values, loaded records, errors, and loading flags. `useEffect` loads data when a page mounts. On the details page the effect depends on `id`, so opening another sheet updates the request. Leaving the page unmounts that component and React Router renders the next one. `useParams`, `useNavigate`, and `useLocation` come from React Router.
+`useState` holds form values, loaded records, errors, and loading flags. `useEffect` loads data when a page mounts. `usePanels` uses that effect for Home, Catalog, and Wishlist. On the details page the effect depends on `id`, so opening another sheet updates the request. Leaving the page unmounts that component and React Router renders the next one. `useParams`, `useNavigate`, and `useLocation` come from React Router.
 
 While a list or a sheet is loading, the page shows a spinner from `react-spinners`.
 

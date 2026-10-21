@@ -1,30 +1,17 @@
-import { useEffect, useState } from 'react'
-import request from '../../utils/request.js'
+import usePanels from '../../hooks/usePanels.js'
 import { readWishlist } from '../../utils/wishlist.js'
-import { useAuth } from '../../context/useAuth.js'
+import { useAuth } from '../../hooks/useAuth.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
 import Spinner from '../spinner/Spinner.jsx'
 import '../home/Home.css'
 
 export default function Wishlist() {
   const { user } = useAuth()
-  const [panels, setPanels] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    const ids = readWishlist(user.email)
-
-    if (ids.length === 0) {
-      setIsLoading(false)
-      return
-    }
-
-    request(`/panels?id=in.(${ids.join(',')})&order=created_at.desc`)
-      .then(setPanels)
-      .catch((err) => setError(err.message))
-      .finally(() => setIsLoading(false))
-  }, [user])
+  const ids = readWishlist(user.email)
+  const path = ids.length
+    ? `/panels?id=in.(${ids.join(',')})&order=created_at.desc`
+    : ''
+  const { panels, isLoading, error } = usePanels(path)
 
   return (
     <section aria-label="Wishlist">
