@@ -46,7 +46,7 @@ The backend is Supabase. Panel rows live in `public.panels`. Comments live in `p
 
 Supabase already hosts the database and authentication, so there is no separate backend server to deploy.
 
-Frontend: 
+Frontend: https://wood-panels-catalog.vercel.app
 
 ## Functional Guide
 
