@@ -4,7 +4,7 @@ import Spinner from '../spinner/Spinner.jsx'
 import './Home.css'
 
 export default function Home() {
-  const { panels, isLoading, error } = usePanels('/panels?order=created_at.desc')
+  const { panels, isLoading, error } = usePanels('/panels?order=created_at.desc&limit=3')
 
   return (
     <section aria-label="Home">

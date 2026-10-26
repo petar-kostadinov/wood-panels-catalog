@@ -126,7 +126,7 @@ Parameterized routes: `/catalog/:id` and `/panels/:id/edit`.
 
 **Catalog / list page**
 
-Home and Catalog load sheets from Supabase, newest first. Each card shows the photo, material, price, name, size, thickness, and the date it was added.
+Home loads the three newest sheets from Supabase. Catalog loads every sheet, newest first. Each card shows the photo, material, price, name, size, thickness, and the date it was added.
 
 Catalog has material filters: All, MDF, Plywood, Chipboard, and Solid wood. The filter runs in the browser on the loaded list.
 
@@ -146,7 +146,7 @@ The collection is `panels`.
 
 **Create:** The New listing form sends `POST /panels`. The author column is set to the signed-in email. There is no author field on the form. After a successful save the app opens the catalog.
 
-**Read:** Home and Catalog send `GET /panels?order=created_at.desc`. Details sends `GET /panels?id=eq.{id}`. Comments are read with `GET /comments?panel_id=eq.{id}`.
+**Read:** Home sends `GET /panels?order=created_at.desc&limit=3`. Catalog sends `GET /panels?order=created_at.desc`. Details sends `GET /panels?id=eq.{id}`. Comments are read with `GET /comments?panel_id=eq.{id}`.
 
 **Update:** Edit listing loads the same row, and only the author can open it. Save sends `PATCH /panels?id=eq.{id}` with the user access token. The app then returns to that sheet's details page, which loads the updated row.
 
