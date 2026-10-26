@@ -17,3 +17,8 @@ h2 {
   margin: 0;
   color: #6d6d6d;
 }
+
+.page-head a {
+  color: var(--stain);
+  font-weight: 700;
+}

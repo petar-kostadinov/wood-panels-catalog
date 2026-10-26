@@ -66,7 +66,7 @@ Available pages: `/`, `/catalog`, `/catalog/:id`, `/login`, `/register`, and the
 
 Public data: sheet name, material, dimensions, price, image, description, and the comments on that sheet. The author email of a sheet is stored, but it is not shown on the card or the details page.
 
-A guest does not see Wishlist, New listing, Edit, Delete, or the comment form. Opening `/wishlist`, `/panels/new`, or `/panels/:id/edit` sends them to `/login`.
+A guest does not see Wishlist, New listing, Edit, Delete, or the comment form. The home page says "Sign in to publish a sheet." Opening `/wishlist`, `/panels/new`, or `/panels/:id/edit` sends them to `/login`.
 
 **Authenticated user**
 

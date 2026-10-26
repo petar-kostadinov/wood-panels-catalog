@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom'
 import usePanels from '../../hooks/usePanels.js'
+import { useAuth } from '../../hooks/useAuth.js'
 import PanelCard from '../panelCard/PanelCard.jsx'
 import Spinner from '../spinner/Spinner.jsx'
 import './Home.css'
 
 export default function Home() {
+  const { user } = useAuth()
   const { panels, isLoading, error } = usePanels('/panels?order=created_at.desc&limit=3')
 
   return (
@@ -11,6 +14,11 @@ export default function Home() {
       <div className="page-head">
         <h2>Latest listings</h2>
         <p className="lede">The sheets added most recently. Open a card to see the details.</p>
+        {!user && (
+          <p className="lede">
+            <Link to="/login">Sign in</Link> to publish a sheet.
+          </p>
+        )}
       </div>
       {isLoading && <Spinner />}
       {error && <p className="lede">{error}</p>}
